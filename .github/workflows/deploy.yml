@@ -22,9 +22,9 @@ jobs:
       run: pip install --upgrade pip awscli fonttools brotli
 
     - name: use node.js 10
-    uses: actions/setup-node@v1
-    with:
-      node-version: 10.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
 
     - name: cache node modules
       uses: actions/cache@v1

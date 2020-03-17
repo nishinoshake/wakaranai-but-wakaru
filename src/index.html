@@ -25,7 +25,7 @@ body, ul {
 }
 body {
   font-family: 'Noto Serif JP', serif;
-  color: #333;
+  color: #555;
 }
 body:after {
   content: "";
@@ -33,30 +33,52 @@ body:after {
   height: 100%;
   position: absolute;
   top: 0;
-  left: 0%;
+  left: 0;
   background-color: #fff;
   pointer-events: none;
 }
 body.wakaru:after {
-  transition: opacity 1s 0.2s linear;
+  transition: opacity 1s linear;
   opacity: 0;
 }
-body.wakaru .c {
-  animation: kimura-kaela 60s linear infinite;
-}
 h1 {
-  margin: 0 0 4rem;
-  padding: 0 0 0 4rem;
+  margin: 0 0 3.2rem;
+  padding: 0 0 2.8rem 4rem;
+  position: relative;
   font-size: 2rem;
   line-height: 1.7;
   letter-spacing: 0.4em;
   font-weight: normal;
 }
+h1:before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 1.5rem;
+  left: 22rem;
+  border-style: solid;
+  border-width: 0 18px 31.2px 18px;
+  border-color: transparent transparent #eee transparent;
+  animation: kimura-rie 5s linear infinite;
+  transform-origin: center 66.6%;
+  transform: rotate(145deg);
+}
+h1:after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #ccc;
+}
 ul {
   display: inline-flex;
-  padding: 0 3.4rem;
+  padding: 0 0.4rem 0 3.4rem;
   white-space: nowrap;
   list-style-type: none;
+  animation: kimura-kaela 60s -1.2s linear infinite;
 }
 ul + ul {
   margin-top: 1.5em;
@@ -81,10 +103,16 @@ li {
     font-size: 16px;
   }
   h1 {
-    padding: 0 0 0 6rem;
+    margin: 0 0 3rem;
+    padding: 0 0 2.6rem 6rem;
+  }
+  h1:before {
+    top: 1.7rem;
+    left: 23rem;
+    border-width: 0 25px 43.3px 25px;
   }
   ul {
-    padding: 0 5.5rem;
+    padding: 0 0.5rem 0 5.5rem;
   }
 }
 @keyframes kimura-kaela {
@@ -92,12 +120,20 @@ li {
     transform: translateX(0);
     animation-timing-function: linear;
   }
-  94% {
+  90% {
     transform: translateX(-100%);
     animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
   }
   98%, 100% {
     transform: translateX(0);
+  }
+}
+@keyframes kimura-rie {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>
@@ -176,7 +212,7 @@ li {
   <script>
     setTimeout(function() {
       document.body.classList.add('wakaru')
-    }, 800);
+    }, 600);
   </script>
 </body>
 </html>

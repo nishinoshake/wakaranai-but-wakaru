@@ -1,0 +1,16 @@
+{
+  "name": "wakaranai-but-wakaru",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "browser-sync start --server src --files src",
+    "font:subset": "node scripts/create-subset.js",
+    "font:woff": "pyftsubset ./src/fonts/noto-serif.otf  --layout-features='' --flavor=woff --text-file=./scripts/subset.txt --output-file=./src/fonts/noto-serif-sub.woff",
+    "font:woff2": "pyftsubset ./src/fonts/noto-serif.otf  --layout-features='' --flavor=woff2 --text-file=./scripts/subset.txt --output-file=./src/fonts/noto-serif-sub.woff2",
+    "font:build": "npm run font:subset && npm run font:woff && npm run font:woff2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "jsdom": "^16.2.1"
+  }
+}

@@ -1,0 +1,4 @@
+node_modules
+src/fonts/noto-serif-sub.woff
+src/fonts/noto-serif-sub.woff2
+scripts/subset.txt

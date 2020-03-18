@@ -9,7 +9,7 @@
   @font-face {
   font-family: "Noto Serif JP";
   font-display: swap;
-  src: url(/fonts/noto-serif-sub.woff2) format("woff2"), url(/fonts/noto-serif-sub.woff) format("woff");
+  src: url(/fonts/noto-serif-sub.woff2?d=2020031901) format("woff2"), url(/fonts/noto-serif-sub.woff?d=2020031901) format("woff");
 }
 html,
 body {
@@ -42,42 +42,17 @@ body.wakaru:after {
   opacity: 0;
 }
 h1 {
-  margin: 0 0 3.2rem;
-  padding: 0 0 2.8rem 4rem;
-  position: relative;
   font-size: 2rem;
   line-height: 1.7;
   letter-spacing: 0.4em;
   font-weight: normal;
 }
-h1:before {
-  content: "";
-  width: 0;
-  height: 0;
-  position: absolute;
-  top: 1.5rem;
-  left: 22rem;
-  border-style: solid;
-  border-width: 0 18px 31.2px 18px;
-  border-color: transparent transparent #eee transparent;
-  animation: kimura-rie 5s linear infinite;
-  transform-origin: center 66.6%;
-  transform: rotate(145deg);
-}
-h1:after {
-  content: "";
-  width: 100%;
-  height: 1px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-color: #ccc;
-}
 ul {
   display: inline-flex;
-  padding: 0 0.4rem;
   white-space: nowrap;
   list-style-type: none;
+  animation: kimura-kaela 40s linear infinite;
+  will-change: transform;
 }
 ul + ul {
   margin-top: 1.5em;
@@ -87,6 +62,54 @@ li {
   font-size: 1.6rem;
   letter-spacing: 0.25em;
 }
+a,
+a:hover,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  width: 5rem;
+  height: 5rem;
+  margin: 0.3rem 0 0 2.5rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+button:before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 22%;
+  left: 26%;
+  border-style: solid;
+  border-width: 0 12px 20.8px 12px;
+  border-color: transparent transparent #ccc transparent;
+  transform-origin: center 66.6%;
+  transform: rotate(90deg);
+}
+button:after {
+  content: "";
+  width: 0.4rem;
+  height: 2.1rem;
+  display: none;
+  border-left: 0.6rem solid #ccc;
+  border-right: 0.6rem solid #ccc;
+}
+button.is-playing:before {
+  display: none;
+}
+button.is-playing:after {
+  display: block;
+}
 .a {
   height: 100%;
   display: flex;
@@ -94,51 +117,62 @@ li {
   justify-content: center;
   overflow: hidden;
 }
-.c {
+.b {
+  margin: 0 0 3.2rem;
+  padding: 0 0 2.8rem 4rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+.d {
   display: inline-block;
-  animation: kimura-kaela 50s linear infinite;
 }
 @media screen and (min-width: 768px) {
   html {
     font-size: 16px;
   }
-  h1 {
+  .b {
     margin: 0 0 3rem;
     padding: 0 0 2.6rem 6rem;
   }
-  h1:before {
-    top: 1.7rem;
-    left: 23rem;
-    border-width: 0 25px 43.3px 25px;
+  button {
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+  button:before {
+    border-width: 0 18px 31.2px 18px;
   }
 }
 @keyframes kimura-kaela {
   0% {
-    transform: translateX(110vw);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 @keyframes kimura-rie {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(90deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(450deg);
   }
 }
 </style>
 </head>
 <body>
   <div class="a">
-    <h1>わからない<br>けどわかる</h1>
     <div class="b">
-      <div class="c">
+      <h1>わからない<br>けどわかる</h1>
+      <button type="button" aria-label="音楽を再生する"></button>
+    </div>
+    <div class="c">
+      <div class="d">
         <ul>
           <li>平凡な暮らし</li>
           <li>半乾きのタオル</li>
-          <li>くたくたの洗濯ネット</li>
+          <li>ギリギリの洗濯ネット</li>
           <li>アウトローな同居人</li>
           <li>顔見知りの他人</li>
           <li>朝ドラが日課</li>
@@ -193,18 +227,39 @@ li {
           <li>ひとり映画館</li>
           <li>ひとりサイゼリヤ</li>
           <li>ひとりサファリパーク</li>
-          <li>遠い目をしたヒグマ</li>
           <li>悟りきったライオン</li>
           <li>かわいいよガゼル</li>
           <li>馬の耳にモルダウ</li>
+          <li><a href="http://classical-sound.seesaa.net/article/312156442.html" target="_blank" rel="noopener">クラシック名曲サウンドライブラリー</a></li>
         </ul>
       </div>
     </div>
   </div>
+  <audio src="/audio/moldau.mp3" loop preload="none"></audio>
   <script>
+    var audio = document.querySelector('audio')
+    var button = document.querySelector('button')
+    var playingClass = 'is-playing'
+
+    document.querySelectorAll('ul').forEach(function(ul) {
+      ul.querySelectorAll('li').forEach(function(li) {
+        ul.appendChild(li.cloneNode(true))
+      })
+    })
+
+    button.addEventListener('click', function() {
+      if (button.classList.contains(playingClass)) {
+        audio.pause()
+        button.classList.remove(playingClass)
+      } else {
+        audio.play()
+        button.classList.add(playingClass)
+      }
+    })
+
     setTimeout(function() {
       document.body.classList.add('wakaru')
-    }, 600);
+    }, 600)
   </script>
 </body>
 </html>

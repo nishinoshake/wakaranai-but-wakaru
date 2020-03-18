@@ -78,7 +78,6 @@ ul {
   padding: 0 0.4rem;
   white-space: nowrap;
   list-style-type: none;
-  animation: kimura-kaela 60s -1.2s linear infinite;
 }
 ul + ul {
   margin-top: 1.5em;
@@ -97,6 +96,7 @@ li {
 }
 .c {
   display: inline-block;
+  animation: kimura-kaela 60s linear infinite;
 }
 @media screen and (min-width: 768px) {
   html {
@@ -114,7 +114,7 @@ li {
 }
 @keyframes kimura-kaela {
   0% {
-    transform: translateX(100vw);
+    transform: translateX(150vw);
   }
   100% {
     transform: translateX(-100%);

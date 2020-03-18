@@ -75,7 +75,7 @@ h1:after {
 }
 ul {
   display: inline-flex;
-  padding: 0 0.4rem 0 3.4rem;
+  padding: 0 0.4rem;
   white-space: nowrap;
   list-style-type: none;
   animation: kimura-kaela 60s -1.2s linear infinite;
@@ -111,21 +111,13 @@ li {
     left: 23rem;
     border-width: 0 25px 43.3px 25px;
   }
-  ul {
-    padding: 0 0.5rem 0 5.5rem;
-  }
 }
 @keyframes kimura-kaela {
   0% {
-    transform: translateX(0);
-    animation-timing-function: linear;
+    transform: translateX(100vw);
   }
-  90% {
+  100% {
     transform: translateX(-100%);
-    animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
-  }
-  98%, 100% {
-    transform: translateX(0);
   }
 }
 @keyframes kimura-rie {

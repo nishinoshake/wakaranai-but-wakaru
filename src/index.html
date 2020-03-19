@@ -6,10 +6,15 @@
 <title>わからないけどわかる</title>
 <meta name="keywords" content="木村カエラ">
 <style>
-  @font-face {
-  font-family: "Noto Serif JP";
+@font-face {
+  font-family: "noto-sans-thin";
   font-display: swap;
-  src: url(/fonts/noto-serif-sub.woff2?d=2020031901) format("woff2"), url(/fonts/noto-serif-sub.woff?d=2020031901) format("woff");
+  src: url(/fonts/noto-sans-thin-sub.woff2?d=2020031901) format("woff2"), url(/fonts/noto-sans-thin-sub.woff?d=2020031901) format("woff");
+}
+@font-face {
+  font-family: "noto-sans-light";
+  font-display: swap;
+  src: url(/fonts/noto-sans-light-sub.woff2?d=2020031901) format("woff2"), url(/fonts/noto-sans-light-sub.woff?d=2020031901) format("woff");
 }
 html,
 body {
@@ -24,8 +29,8 @@ body, ul {
   padding: 0;
 }
 body {
-  font-family: 'Noto Serif JP', serif;
-  color: #555;
+  font-family: 'noto-sans-thin', 'noto-sans-light', sans-serif;
+  color: #222;
 }
 body:after {
   content: "";

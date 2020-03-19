@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "browser-sync start --server src --files src",
     "font:subset": "node scripts/create-subset.js",
-    "font:woff": "pyftsubset ./src/fonts/noto-serif.otf  --layout-features='' --flavor=woff --text-file=./scripts/subset.txt --output-file=./src/fonts/noto-serif-sub.woff",
-    "font:woff2": "pyftsubset ./src/fonts/noto-serif.otf  --layout-features='' --flavor=woff2 --text-file=./scripts/subset.txt --output-file=./src/fonts/noto-serif-sub.woff2",
-    "font:build": "npm run font:subset && npm run font:woff && npm run font:woff2"
+    "font:sans:woff": "pyftsubset ./src/fonts/noto-sans-light.otf  --layout-features='' --flavor=woff --text-file=./scripts/subset-kanji.txt --output-file=./src/fonts/noto-sans-light-sub.woff",
+    "font:serif:woff": "pyftsubset ./src/fonts/noto-sans-thin.otf  --layout-features='' --flavor=woff --text-file=./scripts/subset-kana.txt --output-file=./src/fonts/noto-sans-thin-sub.woff",
+    "font:sans:woff2": "pyftsubset ./src/fonts/noto-sans-light.otf  --layout-features='' --flavor=woff2 --text-file=./scripts/subset-kanji.txt --output-file=./src/fonts/noto-sans-light-sub.woff2",
+    "font:serif:woff2": "pyftsubset ./src/fonts/noto-sans-thin.otf  --layout-features='' --flavor=woff2 --text-file=./scripts/subset-kana.txt --output-file=./src/fonts/noto-sans-thin-sub.woff2",
+    "font:build": "npm run font:subset && npm run font:sans:woff && npm run font:serif:woff && npm run font:sans:woff2 && npm run font:serif:woff2"
   },
   "devDependencies": {
     "browser-sync": "^2.26.7",

@@ -6,15 +6,10 @@
 <title>わからないけどわかる</title>
 <meta name="keywords" content="木村カエラ">
 <style>
-@font-face {
-  font-family: "noto-sans-thin";
+  @font-face {
+  font-family: "noto-serif";
   font-display: swap;
-  src: url(/fonts/noto-sans-thin-sub.woff2?d=2020031901) format("woff2"), url(/fonts/noto-sans-thin-sub.woff?d=2020031901) format("woff");
-}
-@font-face {
-  font-family: "noto-sans-light";
-  font-display: swap;
-  src: url(/fonts/noto-sans-light-sub.woff2?d=2020031901) format("woff2"), url(/fonts/noto-sans-light-sub.woff?d=2020031901) format("woff");
+  src: url(/fonts/noto-serif-sub.woff2?d=20200322) format("woff2"), url(/fonts/noto-serif-sub.woff?d=20200322) format("woff");
 }
 html,
 body {
@@ -29,8 +24,18 @@ body, ul {
   padding: 0;
 }
 body {
-  font-family: 'noto-sans-thin', 'noto-sans-light', sans-serif;
-  color: #222;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  font-family: 'noto-serif', serif;
+  color: #1a1a1a;
+  background-color: #fff;
+}
+body.is-grab {
+  cursor: grab;
+}
+body.is-grabbing {
+  cursor: grabbing;
 }
 body:after {
   content: "";
@@ -46,10 +51,8 @@ body.wakaru:after {
   transition: opacity 1s linear;
   opacity: 0;
 }
-h1 {
-  margin: 0;
-  font-size: 2rem;
-  line-height: 1.7;
+p {
+  font-size: 3rem;
   letter-spacing: 0.4em;
   font-weight: normal;
 }
@@ -57,16 +60,15 @@ ul {
   display: inline-flex;
   white-space: nowrap;
   list-style-type: none;
-  animation: kimura-kaela 40s linear infinite;
+  animation: kimura-kaela 60s linear infinite;
   will-change: transform;
 }
-ul + ul {
-  margin-top: 1.5em;
-}
 li {
-  margin: 0 0.4em;
-  font-size: 1.6rem;
-  letter-spacing: 0.25em;
+  margin: 0 0.3em;
+  font-size: calc(100vh / (6 * 3));
+  letter-spacing: 0.18em;
+  line-height: 2.2;
+  user-select: none;
 }
 a,
 a:hover,
@@ -74,41 +76,25 @@ a:visited {
   color: inherit;
   text-decoration: none;
 }
+svg {
+  width: 7.5rem;
+  height: auto;
+  fill: #1a1a1a;
+}
 button {
   width: 5rem;
   height: 5rem;
-  margin: 0.3rem 0 0 2.5rem;
-  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  border: 1px solid #ccc;
+  margin-top: 1.6rem;
   border-radius: 50%;
-  background: none;
+  border: 2px solid #1a1a1a;
+  background: #fff;
+  outline: none;
   -webkit-appearance: none;
   cursor: pointer;
-}
-button:before {
-  content: "";
-  width: 0;
-  height: 0;
-  position: absolute;
-  top: 22%;
-  left: 26%;
-  border-style: solid;
-  border-width: 0 12px 20.8px 12px;
-  border-color: transparent transparent #ccc transparent;
-  transform-origin: center 66.6%;
-  transform: rotate(90deg);
-}
-button:after {
-  content: "";
-  width: 0.4rem;
-  height: 2.1rem;
-  display: none;
-  border-left: 0.6rem solid #ccc;
-  border-right: 0.6rem solid #ccc;
 }
 button.is-playing:before {
   display: none;
@@ -116,37 +102,74 @@ button.is-playing:before {
 button.is-playing:after {
   display: block;
 }
-.a {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
+button:before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 27%;
+  left: 32%;
+  border-style: solid;
+  border-width: 0 12px 21px 12px;
+  border-color: transparent transparent #1a1a1a transparent;
+  transform: rotate(90deg);
 }
-.b {
-  margin: 0 0 3.3rem;
-  padding: 0 0 2.8rem 4rem;
+button:after {
+  content: "";
+  width: 0.6rem;
+  height: 2.1rem;
+  display: none;
+  border-left: 0.6rem solid #1a1a1a;
+  border-right: 0.6rem solid #1a1a1a;
+}
+.a {
+  width: 17rem;
+  height: 17rem;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #ccc;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  z-index: 1;
+  background-color: #fff;
+  border: 2px solid #1a1a1a;
 }
-.d {
-  display: inline-block;
+.b {
+  overflow: hidden;
 }
+
 @media screen and (min-width: 768px) {
   html {
     font-size: 16px;
   }
-  .b {
-    margin: 0 0 3rem;
-    padding: 0 0 2.6rem 6rem;
+  li {
+    font-size: calc(100vh / (6 * 2.6));
+    line-height: 2.4;
+    letter-spacing: 0.25em;
+  }
+  svg {
+    width: 7.2rem;
   }
   button {
-    width: 4.8rem;
-    height: 4.8rem;
+    width: 5rem;
+    height: 5rem;
+    margin-top: 1.8rem;
+    border-width: 3px;
   }
   button:before {
-    border-width: 0 18px 31.2px 18px;
+    top: 29%;
+    left: 34%;
+    border-width: 0 18px 32px 18px;
+  }
+  .a {
+    width: 15rem;
+    height: 15rem;
+    border-width: 3px;
   }
 }
 @keyframes kimura-kaela {
@@ -169,83 +192,88 @@ button.is-playing:after {
 </head>
 <body>
   <div class="a">
-    <div class="b">
-      <h1>わからない<br>けどわかる</h1>
-      <button type="button" aria-label="音楽を再生する"></button>
-    </div>
-    <div class="c">
-      <div class="d">
-        <ul>
-          <li>平凡な暮らし</li>
-          <li>半乾きのタオル</li>
-          <li>ギリギリの洗濯ネット</li>
-          <li>アウトローな同居人</li>
-          <li>顔見知りの他人</li>
-          <li>朝ドラが日課</li>
-          <li>三日目の牡蠣</li>
-          <li>覚えのある腹痛</li>
-          <li>スマホで見る花火</li>
-        </ul>
-        <ul>
-          <li>つり革を裏返す仕事</li>
-          <li>なくならない無断欠勤</li>
-          <li>反省の空気椅子</li>
-          <li>喜びの現地解散</li>
-          <li>募る将来への不安</li>
-          <li>束の間の貯蓄</li>
-          <li>年の瀬に散財</li>
-          <li>納車日に骨折</li>
-          <li>バランスのとれた食事</li>
-        </ul>
-        <ul>
-          <li>雲泥の泥</li>
-          <li>思いつきでリハビリ</li>
-          <li>続かない習慣</li>
-          <li>たたずむヨガマット</li>
-          <li>迫り来る決戦の日</li>
-          <li>二時間に渡る押し問答</li>
-          <li>五分で終わる引き継ぎ</li>
-          <li>あっけなく退職</li>
-          <li>同居人の失踪</li>
-        </ul>
-        <ul>
-          <li>自堕落な暮らし</li>
-          <li>のりたまを箱買い</li>
-          <li>期限切れのハチミツ</li>
-          <li>伸びきったペヤング</li>
-          <li>ピザポテトの抜け殻</li>
-          <li>雑煮で乗り切った正月</li>
-          <li>漬物で乗り切った二月</li>
-          <li>再起を誓う三月</li>
-        </ul>
-        <ul>
-          <li>周回遅れの学園生活</li>
-          <li>人見知りが口癖</li>
-          <li>馴染めない焦燥感</li>
-          <li>学園祭アレルギー発覚</li>
-          <li>バーベキュー拒否権行使</li>
-          <li>狂い始める生活リズム</li>
-          <li>見失う学問の意義</li>
-          <li>退学を意味する留年</li>
-        </ul>
-        <ul>
-          <li>有り余る時間</li>
-          <li>ひとり映画館</li>
-          <li>ひとりサイゼリヤ</li>
-          <li>ひとりサファリパーク</li>
-          <li>悟りきったライオン</li>
-          <li>かわいいよガゼル</li>
-          <li>馬の耳にモルダウ</li>
-          <li><a href="http://classical-sound.seesaa.net/article/312156442.html" target="_blank" rel="noopener">クラシック名曲サウンドライブラリー</a></li>
-        </ul>
-      </div>
-    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" width="78" height="36" viewBox="0 0 78 36"><path d="M13.78,3.83a11.24,11.24,0,0,0-.18-2.16h4.53A14.76,14.76,0,0,0,18,3.83V6.14h9.69A17.24,17.24,0,0,0,29.79,6V7.68c-.35,0-.5-.07-.68-.07l-.5,0H21.52L25.87,9.3l-.93,1a57.71,57.71,0,0,1-4.22,5l-.21.21h9a17.74,17.74,0,0,0,2.16-.1V17c-.36,0-.51-.07-.69-.07l-.5,0H2.29A14.26,14.26,0,0,0,.49,17V15.39a13.45,13.45,0,0,0,2.16.1H8.59l-.1-1.18A39.5,39.5,0,0,0,7.3,9.19l-.43-1L8,7.57H4.17a14,14,0,0,0-1.8.11V6a12.18,12.18,0,0,0,2.16.11h9.25Zm13,15.66a15.92,15.92,0,0,0-.18,2.91v8.14a16.3,16.3,0,0,0,.18,2.92l-.94,0A17.44,17.44,0,0,0,24,33.35H8l-.9,0a5,5,0,0,0-.65,0c-.64,0-.68,0-1,0a16.78,16.78,0,0,0,.18-2.92V22.4a16.59,16.59,0,0,0-.18-2.91c1.08.07,1.94.11,2.7.11H24a16.19,16.19,0,0,0,1.65-.07l.76,0ZM8.81,8.33a38.44,38.44,0,0,1,3.46,4.25l.9,1-4,1.87h9.39A56.5,56.5,0,0,0,20.9,9l.22-1.41H8.23ZM9.71,21V25.5H22.45V21Zm0,5.9v5H22.45v-5Z"/><path d="M53.5,13.08l-.76.72a31,31,0,0,1-5.11,5l-.83.72-2.51-3.67,1.11-.29a39,39,0,0,0,6.41-3.06l.72-.57ZM65,5.67a19.37,19.37,0,0,0,2.7-.11,16.71,16.71,0,0,0-.18,2.88v7.23a16.71,16.71,0,0,0,.18,2.88,20.92,20.92,0,0,0-2.12-.1H62.68v3.27H74.23a15.12,15.12,0,0,0,2.16-.14V23.3a16.4,16.4,0,0,0-2.16-.14H63.76a27.82,27.82,0,0,0,11.3,5.76l1.73.29L74,33.42l-1.26-.76A28.11,28.11,0,0,1,62.68,24.2v7.67A14.07,14.07,0,0,0,62.86,34H58.4l0-.36a11.07,11.07,0,0,0,.15-1.8V25.93a31.91,31.91,0,0,1-12.42,7.42L45,33.82l-.58-1.19,1.26-.47a28.84,28.84,0,0,0,10.08-9H47c-.76,0-.83,0-1.87.14V21.58a15.12,15.12,0,0,0,2.16.14H58.58V18.45H56.09c-.93,0-1.26,0-2.23.1A16.15,16.15,0,0,0,54,15.67V8.44a13.28,13.28,0,0,0-.18-2.88,24.84,24.84,0,0,0,2.7.11h1.58A22.16,22.16,0,0,0,59,2.39l.11-1.11,5,.9-1,.79c-.8.83-1.91,1.91-2.81,2.7ZM47,4.73a50.54,50.54,0,0,1,5.07,2.63l.9.43-3.31,3.6-.51-1a34.84,34.84,0,0,0-3.34-4.5l-.72-.68,1-1ZM57.71,7.11v4.1h6.12V7.11Zm0,5.54V17h6.12V12.65ZM77,7.21l-1,.47a29,29,0,0,1-6,2.77l-.82.44-.87-1.23L69,9.12A27.55,27.55,0,0,0,72.83,4.8l.5-.93Zm-7,5.26a44.59,44.59,0,0,1,5.94,2.84l1.08.4-3,3.74-.58-.86a45.6,45.6,0,0,0-4.21-4.75l-.86-.72L69.19,12Z"/></svg>
+    <button type="button" aria-label="音楽を再生する"></button>
   </div>
-  <audio src="/audio/moldau.mp3" loop preload="none"></audio>
+  <div class="b">
+    <ul>
+      <li>わからないけどわかる</li>
+      <li>平凡な暮らし</li>
+      <li>半乾きのタオル</li>
+      <li>アウトローな同居人</li>
+      <li>顔見知りの他人</li>
+      <li>朝ドラが日課</li>
+      <li>三日目の牡蠣</li>
+      <li>覚えのある腹痛</li>
+      <li>スマホで見る花火</li>
+    </ul>
+    <ul>
+      <li>つり革を裏返す仕事</li>
+      <li>なくならない無断欠勤</li>
+      <li>反省の空気椅子</li>
+      <li>喜びの現地解散</li>
+      <li>募る将来への不安</li>
+      <li>束の間の貯蓄</li>
+      <li>年の瀬に散財</li>
+      <li>納車日に骨折</li>
+      <li>バランスのとれた食事</li>
+    </ul>
+    <ul>
+      <li>雲泥の泥</li>
+      <li>思いつきでリハビリ</li>
+      <li>続かない習慣</li>
+      <li>たたずむヨガマット</li>
+      <li>迫り来る決戦の日</li>
+      <li>二時間に渡る押し問答</li>
+      <li>五分で終わる引き継ぎ</li>
+      <li>あっけなく退職</li>
+      <li>同居人の失踪</li>
+    </ul>
+    <ul>
+      <li>自堕落な暮らし</li>
+      <li>のりたまを箱買い</li>
+      <li>期限切れのハチミツ</li>
+      <li>伸びきったペヤング</li>
+      <li>ピザポテトの抜け殻</li>
+      <li>雑煮で乗り切った正月</li>
+      <li>漬物で乗り切った二月</li>
+      <li>再起を誓う三月</li>
+    </ul>
+    <ul>
+      <li>周回遅れの学園生活</li>
+      <li>人見知りが口癖</li>
+      <li>馴染めない焦燥感</li>
+      <li>学園祭アレルギー発覚</li>
+      <li>バーベキュー拒否権行使</li>
+      <li>狂い始める生活リズム</li>
+      <li>見失う学問の意義</li>
+      <li>退学を意味する留年</li>
+    </ul>
+    <ul>
+      <li>有り余る時間</li>
+      <li>ひとり映画館</li>
+      <li>ひとりサイゼリヤ</li>
+      <li>ひとりサファリパーク</li>
+      <li>悟りきったライオン</li>
+      <li>かわいいよガゼル</li>
+      <li>馬の耳にモルダウ</li>
+      <li><a href="http://classical-sound.seesaa.net/article/312156442.html" target="_blank" rel="noopener">クラシック名曲サウンドライブラリー</a></li>
+    </ul>
+  </div>
+  <audio src="/audio/moldau.mp3?d=20200322" loop preload="none"></audio>
   <script>
+    var body = document.body
+    var a = document.querySelector('.a')
     var audio = document.querySelector('audio')
     var button = document.querySelector('button')
     var playingClass = 'is-playing'
+    var grabClass = 'is-grab'
+    var grabbingClass = 'is-grabbing'
+    var isGrabbing = false
+    var prevX = 0
+    var prevY = 0
+    var translateX = 0
+    var translateY = 0
 
     document.querySelectorAll('ul').forEach(function(ul) {
       ul.querySelectorAll('li').forEach(function(li) {
@@ -266,6 +294,71 @@ button.is-playing:after {
     setTimeout(function() {
       document.body.classList.add('wakaru')
     }, 600)
+
+    a.addEventListener('mouseenter', function(e) {
+      body.classList.add(grabClass)
+    })
+
+    a.addEventListener('mouseleave', function(e) {
+      body.classList.remove(grabClass)
+    })
+
+    a.addEventListener('mousedown', function(e) {
+      handleStart(e.clientX, e.clientY)
+      body.addEventListener('mousemove', mouseMoveHandler)
+      body.addEventListener('mouseup', mouseUpHandler)
+    })
+
+    a.addEventListener('touchstart', function(e) {
+      handleStart(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+      body.addEventListener('touchmove', touchMoveHandler)
+      body.addEventListener('touchend', touchEndHandler)
+    })
+
+    function mouseMoveHandler(e) {
+      handleMove(e.clientX, e.clientY)
+    }
+
+    function mouseUpHandler(e) {
+      handleEnd(e.clientX, e.clientY)
+      body.removeEventListener('mousemove', mouseMoveHandler)
+      body.removeEventListener('mouseup', mouseUpHandler)
+    }
+
+    function touchMoveHandler(e) {
+      handleMove(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+    }
+
+    function touchEndHandler(e) {
+      handleEnd(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+      body.removeEventListener('touchmove', touchMoveHandler)
+      body.removeEventListener('touchend', touchEndHandler)
+    }
+
+    function handleStart(x, y) {
+      isGrabbing = true
+      prevX = x
+      prevY = y
+      body.classList.add(grabbingClass)
+    }
+
+    function handleMove(x, y) {
+      if (!isGrabbing) {
+        return
+      }
+
+      translateX += x - prevX
+      translateY += y - prevY
+      prevX = x
+      prevY = y
+
+      a.style.transform = 'translate(' + translateX + 'px, ' + translateY + 'px)'
+    }
+
+    function handleEnd(x, y) {
+      isGrabbing = false
+      body.classList.remove(grabbingClass)
+    }
   </script>
 </body>
 </html>

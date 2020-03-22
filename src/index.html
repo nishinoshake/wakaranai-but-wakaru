@@ -6,10 +6,23 @@
 <title>わからないけどわかる</title>
 <meta name="keywords" content="木村カエラ">
 <style>
-  @font-face {
+@font-face {
   font-family: "noto-serif";
   font-display: swap;
   src: url(/fonts/noto-serif-sub.woff2?d=20200322) format("woff2"), url(/fonts/noto-serif-sub.woff?d=20200322) format("woff");
+}
+*,
+*:before,
+*:after {
+  margin: 0;
+  bottom: 0;
+  box-sizing: border-box;
+}
+:root {
+  --color-font: #1a1a1a;
+  --color-white: #fff;
+  --border-width-sp: 3px;
+  --border-width-pc: 3px;
 }
 html,
 body {
@@ -28,14 +41,8 @@ body {
   align-items: center;
   overflow: hidden;
   font-family: 'noto-serif', serif;
-  color: #1a1a1a;
-  background-color: #fff;
-}
-body.is-grab {
-  cursor: grab;
-}
-body.is-grabbing {
-  cursor: grabbing;
+  color: var(--color-font);
+  background-color: var(--color-white);
 }
 body:after {
   content: "";
@@ -44,12 +51,30 @@ body:after {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #fff;
+  background-color: var(--color-white);
   pointer-events: none;
+}
+body.is-grab {
+  cursor: grab;
+}
+body.is-grabbing {
+  cursor: grabbing;
 }
 body.wakaru:after {
   transition: opacity 1s linear;
   opacity: 0;
+}
+body.wakaru .c {
+  transform: translateX(-6rem);
+}
+body.is-playing button:before {
+  display: none;
+}
+body.is-playing button:after {
+  display: block;
+}
+body.is-playing ul {
+  animation-play-state: running;
 }
 p {
   font-size: 3rem;
@@ -60,7 +85,8 @@ ul {
   display: inline-flex;
   white-space: nowrap;
   list-style-type: none;
-  animation: kimura-kaela 60s linear infinite;
+  animation: kimura-kaela 59s 0s linear infinite;
+  animation-play-state: paused;
   will-change: transform;
 }
 li {
@@ -69,6 +95,7 @@ li {
   letter-spacing: 0.18em;
   line-height: 2.2;
   user-select: none;
+  pointer-events: none;
 }
 a,
 a:hover,
@@ -79,7 +106,7 @@ a:visited {
 svg {
   width: 7.5rem;
   height: auto;
-  fill: #1a1a1a;
+  fill: var(--color-font);
 }
 button {
   width: 5rem;
@@ -88,19 +115,13 @@ button {
   align-items: center;
   justify-content: center;
   position: relative;
-  margin-top: 1.6rem;
+  margin-top: 1.8rem;
   border-radius: 50%;
-  border: 2px solid #1a1a1a;
-  background: #fff;
+  border: var(--border-width-sp) solid var(--color-font);
+  background: var(--color-white);
   outline: none;
   -webkit-appearance: none;
   cursor: pointer;
-}
-button.is-playing:before {
-  display: none;
-}
-button.is-playing:after {
-  display: block;
 }
 button:before {
   content: "";
@@ -111,16 +132,17 @@ button:before {
   left: 32%;
   border-style: solid;
   border-width: 0 12px 21px 12px;
-  border-color: transparent transparent #1a1a1a transparent;
+  border-color: transparent transparent var(--color-font) transparent;
   transform: rotate(90deg);
 }
 button:after {
   content: "";
-  width: 0.6rem;
+  width: 0.5rem;
   height: 2.1rem;
   display: none;
-  border-left: 0.6rem solid #1a1a1a;
-  border-right: 0.6rem solid #1a1a1a;
+  border-left: 0.6rem solid var(--color-font);
+  border-right: 0.6rem solid var(--color-font);
+  box-sizing: content-box;
 }
 .a {
   width: 17rem;
@@ -130,17 +152,32 @@ button:after {
   justify-content: center;
   flex-direction: column;
   position: absolute;
+  z-index: 0;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   margin: auto;
   z-index: 1;
-  background-color: #fff;
-  border: 2px solid #1a1a1a;
+}
+.a:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  border: var(--border-width-sp) solid var(--color-font);
+  background-color: var(--color-white);
+  pointer-events: none;
 }
 .b {
   overflow: hidden;
+}
+.c {
+  display: inline-block;
+  transition: transform 3s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 @media screen and (min-width: 768px) {
@@ -158,8 +195,8 @@ button:after {
   button {
     width: 5rem;
     height: 5rem;
-    margin-top: 1.8rem;
-    border-width: 3px;
+    margin-top: 2rem;
+    border-width: var(--border-width-pc);
   }
   button:before {
     top: 29%;
@@ -167,9 +204,9 @@ button:after {
     border-width: 0 18px 32px 18px;
   }
   .a {
-    width: 15rem;
-    height: 15rem;
-    border-width: 3px;
+    width: 17rem;
+    height: 17rem;
+    border-width: var(--border-width-pc);
   }
 }
 @keyframes kimura-kaela {
@@ -181,11 +218,11 @@ button:after {
   }
 }
 @keyframes kimura-rie {
-  0% {
-    transform: rotate(90deg);
+  0%, 100% {
+    transform: scale(1);
   }
-  100% {
-    transform: rotate(450deg);
+  50% {
+    transform: scale(1.2);
   }
 }
 </style>
@@ -196,69 +233,71 @@ button:after {
     <button type="button" aria-label="音楽を再生する"></button>
   </div>
   <div class="b">
-    <ul>
-      <li>わからないけどわかる</li>
-      <li>平凡な暮らし</li>
-      <li>半乾きのタオル</li>
-      <li>アウトローな同居人</li>
-      <li>顔見知りの他人</li>
-      <li>朝ドラが日課</li>
-      <li>三日目の牡蠣</li>
-      <li>覚えのある腹痛</li>
-      <li>スマホで見る花火</li>
-    </ul>
-    <ul>
-      <li>つり革を裏返す仕事</li>
-      <li>なくならない無断欠勤</li>
-      <li>反省の空気椅子</li>
-      <li>喜びの現地解散</li>
-      <li>募る将来への不安</li>
-      <li>束の間の貯蓄</li>
-      <li>年の瀬に散財</li>
-      <li>納車日に骨折</li>
-      <li>バランスのとれた食事</li>
-    </ul>
-    <ul>
-      <li>雲泥の泥</li>
-      <li>思いつきでリハビリ</li>
-      <li>続かない習慣</li>
-      <li>たたずむヨガマット</li>
-      <li>迫り来る決戦の日</li>
-      <li>二時間に渡る押し問答</li>
-      <li>五分で終わる引き継ぎ</li>
-      <li>あっけなく退職</li>
-      <li>同居人の失踪</li>
-    </ul>
-    <ul>
-      <li>自堕落な暮らし</li>
-      <li>のりたまを箱買い</li>
-      <li>期限切れのハチミツ</li>
-      <li>伸びきったペヤング</li>
-      <li>ピザポテトの抜け殻</li>
-      <li>雑煮で乗り切った正月</li>
-      <li>漬物で乗り切った二月</li>
-      <li>再起を誓う三月</li>
-    </ul>
-    <ul>
-      <li>周回遅れの学園生活</li>
-      <li>人見知りが口癖</li>
-      <li>馴染めない焦燥感</li>
-      <li>学園祭アレルギー発覚</li>
-      <li>バーベキュー拒否権行使</li>
-      <li>狂い始める生活リズム</li>
-      <li>見失う学問の意義</li>
-      <li>退学を意味する留年</li>
-    </ul>
-    <ul>
-      <li>有り余る時間</li>
-      <li>ひとり映画館</li>
-      <li>ひとりサイゼリヤ</li>
-      <li>ひとりサファリパーク</li>
-      <li>悟りきったライオン</li>
-      <li>かわいいよガゼル</li>
-      <li>馬の耳にモルダウ</li>
-      <li><a href="http://classical-sound.seesaa.net/article/312156442.html" target="_blank" rel="noopener">クラシック名曲サウンドライブラリー</a></li>
-    </ul>
+    <div class="c">
+      <ul>
+        <li>わからないけどわかる</li>
+        <li>平凡な暮らし</li>
+        <li>半乾きのタオル</li>
+        <li>アウトローな同居人</li>
+        <li>顔見知りの他人</li>
+        <li>朝ドラが日課</li>
+        <li>三日目の牡蠣</li>
+        <li>覚えのある腹痛</li>
+        <li>スマホで見る花火</li>
+      </ul>
+      <ul>
+        <li>つり革を裏返す仕事</li>
+        <li>なくならない無断欠勤</li>
+        <li>反省の空気椅子</li>
+        <li>喜びの現地解散</li>
+        <li>募る将来への不安</li>
+        <li>束の間の貯蓄</li>
+        <li>年の瀬に散財</li>
+        <li>納車日に骨折</li>
+        <li>バランスのとれた食事</li>
+      </ul>
+      <ul>
+        <li>雲泥の泥</li>
+        <li>思いつきでリハビリ</li>
+        <li>続かない習慣</li>
+        <li>たたずむヨガマット</li>
+        <li>迫り来る決戦の日</li>
+        <li>二時間に渡る押し問答</li>
+        <li>五分で終わる引き継ぎ</li>
+        <li>あっけなく退職</li>
+        <li>同居人の失踪</li>
+      </ul>
+      <ul>
+        <li>自堕落な暮らし</li>
+        <li>のりたまを箱買い</li>
+        <li>期限切れのハチミツ</li>
+        <li>伸びきったペヤング</li>
+        <li>ピザポテトの抜け殻</li>
+        <li>雑煮で乗り切った正月</li>
+        <li>漬物で乗り切った二月</li>
+        <li>再起を誓う三月</li>
+      </ul>
+      <ul>
+        <li>周回遅れの学園生活</li>
+        <li>人見知りが口癖</li>
+        <li>馴染めない焦燥感</li>
+        <li>学園祭アレルギー発覚</li>
+        <li>バーベキュー拒否権行使</li>
+        <li>狂い始める生活リズム</li>
+        <li>見失う学問の意義</li>
+        <li>退学を意味する留年</li>
+      </ul>
+      <ul>
+        <li>有り余る時間</li>
+        <li>ひとり映画館</li>
+        <li>ひとりサイゼリヤ</li>
+        <li>ひとりサファリパーク</li>
+        <li>悟りきったライオン</li>
+        <li>かわいいよガゼル</li>
+        <li>馬の耳にモルダウ</li>
+        <li><a href="http://classical-sound.seesaa.net/article/312156442.html" target="_blank" rel="noopener">クラシック名曲サウンドライブラリー</a></li>
+      </ul>
+    </div>
   </div>
   <audio src="/audio/moldau.mp3?d=20200322" loop preload="none"></audio>
   <script>
@@ -274,46 +313,6 @@ button:after {
     var prevY = 0
     var translateX = 0
     var translateY = 0
-
-    document.querySelectorAll('ul').forEach(function(ul) {
-      ul.querySelectorAll('li').forEach(function(li) {
-        ul.appendChild(li.cloneNode(true))
-      })
-    })
-
-    button.addEventListener('click', function() {
-      if (button.classList.contains(playingClass)) {
-        audio.pause()
-        button.classList.remove(playingClass)
-      } else {
-        audio.play()
-        button.classList.add(playingClass)
-      }
-    })
-
-    setTimeout(function() {
-      document.body.classList.add('wakaru')
-    }, 600)
-
-    a.addEventListener('mouseenter', function(e) {
-      body.classList.add(grabClass)
-    })
-
-    a.addEventListener('mouseleave', function(e) {
-      body.classList.remove(grabClass)
-    })
-
-    a.addEventListener('mousedown', function(e) {
-      handleStart(e.clientX, e.clientY)
-      body.addEventListener('mousemove', mouseMoveHandler)
-      body.addEventListener('mouseup', mouseUpHandler)
-    })
-
-    a.addEventListener('touchstart', function(e) {
-      handleStart(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
-      body.addEventListener('touchmove', touchMoveHandler)
-      body.addEventListener('touchend', touchEndHandler)
-    })
 
     function mouseMoveHandler(e) {
       handleMove(e.clientX, e.clientY)
@@ -359,6 +358,50 @@ button:after {
       isGrabbing = false
       body.classList.remove(grabbingClass)
     }
+
+    document.querySelectorAll('ul').forEach(function(ul) {
+      ul.querySelectorAll('li').forEach(function(li) {
+        ul.appendChild(li.cloneNode(true))
+      })
+    })
+
+    button.addEventListener('click', function() {
+      if (body.classList.contains(playingClass)) {
+        audio.pause()
+        body.classList.remove(playingClass)
+      } else {
+        audio.play()
+        body.classList.add(playingClass)
+      }
+    })
+
+    a.addEventListener('mouseenter', function(e) {
+      body.classList.add(grabClass)
+    })
+
+    a.addEventListener('mouseleave', function(e) {
+      body.classList.remove(grabClass)
+    })
+
+    a.addEventListener('mousedown', function(e) {
+      handleStart(e.clientX, e.clientY)
+      body.addEventListener('mousemove', mouseMoveHandler)
+      body.addEventListener('mouseup', mouseUpHandler)
+    })
+
+    a.addEventListener('touchstart', function(e) {
+      handleStart(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+      body.addEventListener('touchmove', touchMoveHandler)
+      body.addEventListener('touchend', touchEndHandler)
+    })
+
+    a.addEventListener('contextmenu', function(e) {
+      e.preventDefault()
+    })
+
+    setTimeout(function() {
+      document.body.classList.add('wakaru')
+    }, 600)
   </script>
 </body>
 </html>

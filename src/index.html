@@ -21,8 +21,8 @@
 :root {
   --color-font: #1a1a1a;
   --color-white: #fff;
-  --border-width-sp: 3px;
-  --border-width-pc: 3px;
+  --border-width-sp: 4px;
+  --border-width-pc: 6px;
 }
 html,
 body {
@@ -68,10 +68,10 @@ body.wakaru .c {
   transform: translateX(-6rem);
 }
 body.is-playing button:before {
-  display: none;
+  opacity: 0;
 }
 body.is-playing button:after {
-  display: block;
+  opacity: 1;
 }
 body.is-playing ul {
   animation-play-state: running;
@@ -104,21 +104,20 @@ a:visited {
   text-decoration: none;
 }
 svg {
-  width: 7.5rem;
+  width: 8rem;
   height: auto;
+  margin-left: -0.3rem;
   fill: var(--color-font);
 }
 button {
-  width: 5rem;
-  height: 5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 8rem;
+  height: 8rem;
   position: relative;
-  margin-top: 1.8rem;
+  margin: 0 0.8rem 0 0;
+  padding: 0;
+  border: 0;
   border-radius: 50%;
-  border: var(--border-width-sp) solid var(--color-font);
-  background: var(--color-white);
+  background: var(--color-font);
   outline: none;
   -webkit-appearance: none;
   cursor: pointer;
@@ -128,29 +127,35 @@ button:before {
   width: 0;
   height: 0;
   position: absolute;
-  top: 27%;
-  left: 32%;
+  top: 30%;
+  left: 34%;
   border-style: solid;
-  border-width: 0 12px 21px 12px;
-  border-color: transparent transparent var(--color-font) transparent;
+  border-width: 0 18px 32px 18px;
+  border-color: transparent transparent var(--color-white) transparent;
   transform: rotate(90deg);
 }
 button:after {
   content: "";
-  width: 0.5rem;
-  height: 2.1rem;
-  display: none;
-  border-left: 0.6rem solid var(--color-font);
-  border-right: 0.6rem solid var(--color-font);
+  width: 0.8rem;
+  height: 3rem;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  border-left: 0.9rem solid var(--color-white);
+  border-right: 0.9rem solid var(--color-white);
   box-sizing: content-box;
 }
 .a {
-  width: 17rem;
-  height: 17rem;
+  width: 18rem;
+  height: 18rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
   position: absolute;
   z-index: 0;
   top: 0;
@@ -159,18 +164,9 @@ button:after {
   left: 0;
   margin: auto;
   z-index: 1;
-}
-.a:before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  border: var(--border-width-sp) solid var(--color-font);
   background-color: var(--color-white);
-  pointer-events: none;
+  border: var(--border-width-sp) solid var(--color-font);
+  border-radius: 16px;
 }
 .b {
   overflow: hidden;
@@ -190,23 +186,27 @@ button:after {
     letter-spacing: 0.25em;
   }
   svg {
-    width: 7.2rem;
+    width: 7.4rem;
   }
   button {
-    width: 5rem;
-    height: 5rem;
-    margin-top: 2rem;
+    width: 7rem;
+    height: 7rem;
+    margin-right: 1.2rem;
     border-width: var(--border-width-pc);
   }
   button:before {
-    top: 29%;
+    top: 30%;
     left: 34%;
-    border-width: 0 18px 32px 18px;
+    border-width: 0 26px 46px 26px;
+  }
+  button:after {
+    width: 0.7rem;
   }
   .a {
     width: 17rem;
     height: 17rem;
     border-width: var(--border-width-pc);
+    border-radius: 24px;
   }
 }
 @keyframes kimura-kaela {
@@ -229,7 +229,7 @@ button:after {
 </head>
 <body>
   <div class="a">
-    <svg xmlns="http://www.w3.org/2000/svg" width="78" height="36" viewBox="0 0 78 36"><title>音楽</title><path d="M13.78,3.83a11.24,11.24,0,0,0-.18-2.16h4.53A14.76,14.76,0,0,0,18,3.83V6.14h9.69A17.24,17.24,0,0,0,29.79,6V7.68c-.35,0-.5-.07-.68-.07l-.5,0H21.52L25.87,9.3l-.93,1a57.71,57.71,0,0,1-4.22,5l-.21.21h9a17.74,17.74,0,0,0,2.16-.1V17c-.36,0-.51-.07-.69-.07l-.5,0H2.29A14.26,14.26,0,0,0,.49,17V15.39a13.45,13.45,0,0,0,2.16.1H8.59l-.1-1.18A39.5,39.5,0,0,0,7.3,9.19l-.43-1L8,7.57H4.17a14,14,0,0,0-1.8.11V6a12.18,12.18,0,0,0,2.16.11h9.25Zm13,15.66a15.92,15.92,0,0,0-.18,2.91v8.14a16.3,16.3,0,0,0,.18,2.92l-.94,0A17.44,17.44,0,0,0,24,33.35H8l-.9,0a5,5,0,0,0-.65,0c-.64,0-.68,0-1,0a16.78,16.78,0,0,0,.18-2.92V22.4a16.59,16.59,0,0,0-.18-2.91c1.08.07,1.94.11,2.7.11H24a16.19,16.19,0,0,0,1.65-.07l.76,0ZM8.81,8.33a38.44,38.44,0,0,1,3.46,4.25l.9,1-4,1.87h9.39A56.5,56.5,0,0,0,20.9,9l.22-1.41H8.23ZM9.71,21V25.5H22.45V21Zm0,5.9v5H22.45v-5Z"/><path d="M53.5,13.08l-.76.72a31,31,0,0,1-5.11,5l-.83.72-2.51-3.67,1.11-.29a39,39,0,0,0,6.41-3.06l.72-.57ZM65,5.67a19.37,19.37,0,0,0,2.7-.11,16.71,16.71,0,0,0-.18,2.88v7.23a16.71,16.71,0,0,0,.18,2.88,20.92,20.92,0,0,0-2.12-.1H62.68v3.27H74.23a15.12,15.12,0,0,0,2.16-.14V23.3a16.4,16.4,0,0,0-2.16-.14H63.76a27.82,27.82,0,0,0,11.3,5.76l1.73.29L74,33.42l-1.26-.76A28.11,28.11,0,0,1,62.68,24.2v7.67A14.07,14.07,0,0,0,62.86,34H58.4l0-.36a11.07,11.07,0,0,0,.15-1.8V25.93a31.91,31.91,0,0,1-12.42,7.42L45,33.82l-.58-1.19,1.26-.47a28.84,28.84,0,0,0,10.08-9H47c-.76,0-.83,0-1.87.14V21.58a15.12,15.12,0,0,0,2.16.14H58.58V18.45H56.09c-.93,0-1.26,0-2.23.1A16.15,16.15,0,0,0,54,15.67V8.44a13.28,13.28,0,0,0-.18-2.88,24.84,24.84,0,0,0,2.7.11h1.58A22.16,22.16,0,0,0,59,2.39l.11-1.11,5,.9-1,.79c-.8.83-1.91,1.91-2.81,2.7ZM47,4.73a50.54,50.54,0,0,1,5.07,2.63l.9.43-3.31,3.6-.51-1a34.84,34.84,0,0,0-3.34-4.5l-.72-.68,1-1ZM57.71,7.11v4.1h6.12V7.11Zm0,5.54V17h6.12V12.65ZM77,7.21l-1,.47a29,29,0,0,1-6,2.77l-.82.44-.87-1.23L69,9.12A27.55,27.55,0,0,0,72.83,4.8l.5-.93Zm-7,5.26a44.59,44.59,0,0,1,5.94,2.84l1.08.4-3,3.74-.58-.86a45.6,45.6,0,0,0-4.21-4.75l-.86-.72L69.19,12Z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="75" viewBox="0 0 33 75"><path d="M14.28,2.33A11.24,11.24,0,0,0,14.1.17h4.53a14.76,14.76,0,0,0-.18,2.16V4.64h9.69a17.24,17.24,0,0,0,2.15-.11V6.18c-.36,0-.5-.07-.68-.07l-.5,0H22L26.37,7.8l-.93,1a57.71,57.71,0,0,1-4.22,5L21,14h9a17.85,17.85,0,0,0,2.16-.1v1.65c-.36,0-.51-.07-.69-.07l-.5,0H2.79A14,14,0,0,0,1,15.54V13.89a13.32,13.32,0,0,0,2.15.1H9.09L9,12.81A39.5,39.5,0,0,0,7.8,7.69l-.43-1,1.11-.62H4.67a14,14,0,0,0-1.8.11V4.53A12.18,12.18,0,0,0,5,4.64h9.25ZM27.24,18a15.92,15.92,0,0,0-.18,2.91V29A16.3,16.3,0,0,0,27.24,32l-.94,0a17.44,17.44,0,0,0-1.76-.07H8.48l-.9,0a5,5,0,0,0-.65,0c-.64,0-.68,0-1,0A16.78,16.78,0,0,0,6.11,29V20.9A16.59,16.59,0,0,0,5.93,18c1.08.07,1.94.11,2.7.11H24.54A16.19,16.19,0,0,0,26.19,18L27,18ZM9.31,6.83a37,37,0,0,1,3.45,4.25l.91,1L9.67,14h9.39A56.5,56.5,0,0,0,21.4,7.48l.22-1.41H8.73Zm.9,12.71V24H23V19.54Zm0,5.9v5H23v-5Z"/><path d="M9.35,53.58l-.76.72a31.77,31.77,0,0,1-5.11,5l-.83.72L.13,56.39l1.12-.29A38.52,38.52,0,0,0,7.65,53l.72-.57Zm11.48-7.41a19.37,19.37,0,0,0,2.7-.11,15.76,15.76,0,0,0-.18,2.88v7.23a15.76,15.76,0,0,0,.18,2.88A21.12,21.12,0,0,0,21.4,59H18.52v3.27H30.08a15.21,15.21,0,0,0,2.16-.14v1.73a14.91,14.91,0,0,0-2.16-.15H19.6a27.79,27.79,0,0,0,11.31,5.76l1.72.29-2.77,4.21-1.26-.76a28.28,28.28,0,0,1-10.08-8.45v7.66a15.5,15.5,0,0,0,.18,2.16H14.24l0-.36a11,11,0,0,0,.14-1.8V66.43A31.76,31.76,0,0,1,2,73.85l-1.18.47L.24,73.13l1.26-.47a28.84,28.84,0,0,0,10.08-9H2.79c-.75,0-.82,0-1.87.15V62.08a15.21,15.21,0,0,0,2.16.14H14.42V59H11.94c-.94,0-1.26,0-2.23.1a16.15,16.15,0,0,0,.18-2.88V48.94a13.28,13.28,0,0,0-.18-2.88,24.84,24.84,0,0,0,2.7.11H14a23.48,23.48,0,0,0,.83-3.28l.1-1.11,5,.9-1,.79c-.79.83-1.91,1.91-2.81,2.7Zm-18-.94a49.73,49.73,0,0,1,5.08,2.63l.9.43-3.32,3.6-.5-1a33.92,33.92,0,0,0-3.35-4.5l-.72-.68,1-1.05Zm10.73,2.38v4.1h6.12v-4.1Zm0,5.54v4.36h6.12V53.15Zm19.26-5.43-1,.46a29.22,29.22,0,0,1-6,2.77l-.83.44-.86-1.23.75-.54a27.06,27.06,0,0,0,3.85-4.32l.51-.93ZM25.8,53a45.22,45.22,0,0,1,5.94,2.84l1.08.4-3,3.74-.57-.86a46.83,46.83,0,0,0-4.21-4.75l-.87-.72L25,52.54Z"/></svg>
     <button type="button" aria-label="音楽を再生する"></button>
   </div>
   <div class="b">

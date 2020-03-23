@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "browser-sync start --server src --files src",
+    "dev": "browser-sync start --server src --files src --no-notify",
     "font:subset": "node scripts/create-subset.js",
     "font:woff": "pyftsubset ./src/fonts/noto-serif.otf  --layout-features='' --flavor=woff --text-file=./scripts/subset.txt --output-file=./src/fonts/noto-serif-sub.woff",
     "font:woff2": "pyftsubset ./src/fonts/noto-serif.otf  --layout-features='' --flavor=woff2 --text-file=./scripts/subset.txt --output-file=./src/fonts/noto-serif-sub.woff2",

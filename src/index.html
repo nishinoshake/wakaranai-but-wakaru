@@ -91,9 +91,9 @@ ul {
 }
 li {
   margin: 0 0.3em;
-  font-size: calc(100vh / (6 * 3.2));
+  font-size: calc(100vh / (6 * 3));
   letter-spacing: 0.18em;
-  line-height: 2;
+  line-height: 2.2;
   user-select: none;
   pointer-events: none;
 }
@@ -158,8 +158,10 @@ button:after {
   overflow: hidden;
   position: absolute;
   z-index: 0;
-  right: 2rem;
-  bottom: 2rem;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   margin: auto;
   z-index: 1;
   background-color: var(--color-white);

@@ -15,7 +15,8 @@
 :root {
   --color-font: #1a1a1a;
   --color-white: #fff;
-  --gradient-header: linear-gradient(to right, #7474BF, #348AC7);
+  --gradient-header: linear-gradient(to right, #06beb6, #48b1bf);
+  /* --gradient-header: linear-gradient(to right, #83a4d4, #b6fbff); */
   --gradient-body: linear-gradient(to right, #f4f4f4, #fff);
   --border-width-sp: 2px;
   --border-width-pc: 3px;
@@ -84,13 +85,9 @@ body.is-playing .jacket__play:after {
   width: 18rem;
   height: 18rem;  
   position: absolute;
-  z-index: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
   z-index: 1;
+  right: 2rem;
+  bottom: 2rem;
   display: flex;
   flex-direction: column;
   border: var(--border-width-sp) solid var(--color-font);

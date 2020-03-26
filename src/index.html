@@ -16,7 +16,7 @@
   --color-font: #1a1a1a;
   --color-white: #fff;
   --gradient-header: linear-gradient(to right, #acb6e5, #bfe9ff);
-  --gradient-body: linear-gradient(to right, #fafafa, #fff);
+  --gradient-body: linear-gradient(to right, #f4f4f4, #fff);
   --border-width-sp: 2px;
   --border-width-pc: 4px;
 }
@@ -124,7 +124,7 @@ body.is-playing .jacket__play:after {
 .jacket__close:after {
   content: "";
   width: 50%;
-  height: var(--border-width-sp);
+  height: 1px;
   position: absolute;
   top: 0;
   right: 0;
@@ -231,6 +231,10 @@ body.is-playing .jacket__play:after {
     height: calc(2rem + var(--border-width-pc));
     top: calc(-1 * var(--border-width-pc));
     right: calc(-1 * var(--border-width-pc));
+  }
+  .jacket__close:before,
+  .jacket__close:after {
+    height: 2px;
   }
   .jacket__logo {
     width: 5.2rem;

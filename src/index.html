@@ -15,10 +15,10 @@
 :root {
   --color-font: #1a1a1a;
   --color-white: #fff;
-  --gradient-header: linear-gradient(to right, #acb6e5, #bfe9ff);
+  --gradient-header: linear-gradient(to right, #7474BF, #348AC7);
   --gradient-body: linear-gradient(to right, #f4f4f4, #fff);
   --border-width-sp: 2px;
-  --border-width-pc: 4px;
+  --border-width-pc: 3px;
 }
 
 ::selection {
@@ -85,8 +85,11 @@ body.is-playing .jacket__play:after {
   height: 18rem;  
   position: absolute;
   z-index: 0;
-  bottom: 2rem;
-  right: 2rem;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -95,7 +98,7 @@ body.is-playing .jacket__play:after {
 }
 .jacket__header {
   width: 100%;
-  height: 2rem;
+  height: 2.2rem;
   flex: none;
   display: flex;
   justify-content: flex-end;
@@ -111,8 +114,8 @@ body.is-playing .jacket__play:after {
   background: var(--gradient-body);
 }
 .jacket__close {
-  width: calc(2rem + var(--border-width-sp));
-  height: calc(2rem + var(--border-width-sp));
+  width: calc(2.2rem + var(--border-width-sp));
+  height: calc(2.2rem + var(--border-width-sp));
   position: absolute;
   top: calc(-1 * var(--border-width-sp));
   right: calc(-1 * var(--border-width-sp));
@@ -147,10 +150,10 @@ body.is-playing .jacket__play:after {
   fill: var(--color-font);
 }
 .jacket__play {
-  width: 7rem;
-  height: 7rem;
+  width: 6.4rem;
+  height: 6.4rem;
   position: relative;
-  margin: 0 0 2.7rem 2.5rem;
+  margin: 0 0 3.5rem 2.8rem;
   padding: 0;
   border: 0;
   border-radius: 50%;
@@ -164,17 +167,17 @@ body.is-playing .jacket__play:after {
   width: 0;
   height: 0;
   position: absolute;
-  top: 28%;
-  left: 33%;
+  top: 29%;
+  left: 32%;
   border-style: solid;
-  border-width: 0 18px 32px 18px;
+  border-width: 0 16px 28px 16px;
   border-color: transparent transparent var(--color-white) transparent;
   transform: rotate(90deg);
 }
 .jacket__play:after {
   content: "";
   width: 0.8rem;
-  height: 3rem;
+  height: 2.8rem;
   opacity: 0;
   position: absolute;
   top: 0;
@@ -182,8 +185,8 @@ body.is-playing .jacket__play:after {
   bottom: 0;
   left: 0;
   margin: auto;
-  border-left: 0.9rem solid var(--color-white);
-  border-right: 0.9rem solid var(--color-white);
+  border-left: 0.8rem solid var(--color-white);
+  border-right: 0.8rem solid var(--color-white);
   box-sizing: content-box;
 }
 
@@ -214,13 +217,13 @@ body.is-playing .jacket__play:after {
   text-decoration: none;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   html {
     font-size: 16px;
   }
   .jacket {
-    width: 15rem;
-    height: 15rem;
+    width: 14rem;
+    height: 14rem;
     border-width: var(--border-width-pc);
   }
   .jacket__header {
@@ -237,24 +240,24 @@ body.is-playing .jacket__play:after {
     height: 2px;
   }
   .jacket__logo {
-    width: 5.2rem;
+    width: 4.2rem;
   }
   .jacket__play {
-    width: 6rem;
-    height: 6rem;
-    margin: 0 0 2.3rem 1.8rem;
+    width: 4.8rem;
+    height: 4.8rem;
+    margin: 0 0 2.3rem 2.4rem;
     border-width: var(--border-width-pc);
   }
   .jacket__play:before {
-    top: 29%;
-    left: 35%;
-    border-width: 0 24px 42px 24px;
+    top: 28%;
+    left: 32%;
+    border-width: 0 20px 35px 20px;
   }
   .jacket__play:after {
-    width: 0.7rem;
-    height: 2.6rem;
-    border-left-width: 0.8rem;
-    border-right-width: 0.8rem;
+    width: 0.6rem;
+    height: 2.3rem;
+    border-left-width: 0.7rem;
+    border-right-width: 0.7rem;
   }
   .poem__item {
     font-size: calc(100vh / (6 * 2.6));

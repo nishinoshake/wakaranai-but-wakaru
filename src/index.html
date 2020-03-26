@@ -16,6 +16,7 @@
   --color-font: #1a1a1a;
   --color-white: #fff;
   --gradient-header: linear-gradient(to right, #acb6e5, #bfe9ff);
+  --gradient-body: linear-gradient(to right, #fafafa, #fff);
   --border-width-sp: 2px;
   --border-width-pc: 4px;
 }
@@ -107,6 +108,7 @@ body.is-playing .jacket__play:after {
   justify-content: space-between;
   flex-grow: 1;
   overflow: hidden;
+  background: var(--gradient-body);
 }
 .jacket__close {
   width: calc(2rem + var(--border-width-sp));

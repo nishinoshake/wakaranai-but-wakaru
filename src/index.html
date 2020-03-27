@@ -15,9 +15,7 @@
 :root {
   --color-font: #1a1a1a;
   --color-white: #fff;
-  --gradient-header: linear-gradient(to right, #06beb6, #48b1bf);
-  /* --gradient-header: linear-gradient(to right, #83a4d4, #b6fbff); */
-  --gradient-body: linear-gradient(to right, #f4f4f4, #fff);
+  --gradient-jacket: linear-gradient(to right, #f4f4f4, #fff);
   --border-width-sp: 2px;
   --border-width-pc: 3px;
 }
@@ -90,6 +88,7 @@ body.is-playing .jacket__play:after {
   bottom: 2rem;
   display: flex;
   flex-direction: column;
+  background: var(--gradient-jacket);
   border: var(--border-width-sp) solid var(--color-font);
   will-change: transform;
 }
@@ -99,7 +98,6 @@ body.is-playing .jacket__play:after {
   flex: none;
   display: flex;
   justify-content: flex-end;
-  background: var(--gradient-header);
   border-bottom: var(--border-width-sp) solid var(--color-font);
 }
 .jacket__body {
@@ -108,7 +106,6 @@ body.is-playing .jacket__play:after {
   justify-content: space-between;
   flex-grow: 1;
   overflow: hidden;
-  background: var(--gradient-body);
 }
 .jacket__close {
   width: calc(2.2rem + var(--border-width-sp));
@@ -119,6 +116,7 @@ body.is-playing .jacket__play:after {
   outline: none;
   border: 0;
   background-color: var(--color-font);
+  cursor: pointer;
 }
 .jacket__close:before,
 .jacket__close:after {

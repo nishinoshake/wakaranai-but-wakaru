@@ -83,8 +83,6 @@ body.is-playing .jacket__play:after {
   height: 18rem;  
   position: absolute;
   z-index: 1;
-  right: 2rem;
-  bottom: 2rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -110,7 +108,7 @@ body.is-playing .jacket__play:after {
   width: 6.4rem;
   height: 6.4rem;
   position: relative;
-  margin: 0 0 3.5rem 2.8rem;
+  margin: 0 0 3.5rem 2.9rem;
   padding: 0;
   border: 0;
   border-radius: 50%;
@@ -163,15 +161,25 @@ body.is-playing .jacket__play:after {
 }
 .poem__item {
   padding: 0 0.2em;
-  font-size: calc(100vh / (6 * 3.4));
+  font-size: calc(100vh / (6 * 3.3));
   letter-spacing: 0.18em;
-  line-height: 2.2;
+  line-height: 2.3;
 }
 .poem__link,
 .poem__link:hover,
 .poem__link:visited {
   color: inherit;
   text-decoration: none;
+}
+
+@ media screen and (min-width: 769px) {
+  .jacket {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
 }
 
 @media screen and (min-width: 769px) {
@@ -181,6 +189,8 @@ body.is-playing .jacket__play:after {
   .jacket {
     width: 14rem;
     height: 14rem;
+    right: 2rem;
+    bottom: 2rem;
     border-width: var(--border-width-pc);
   }
   .jacket__logo {

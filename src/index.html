@@ -79,23 +79,29 @@ body.is-playing .jacket__play:after {
 }
 
 .jacket {
+  width: 100%;
   position: absolute;
-  bottom: 2rem;
-  right: 2rem;
+  top: calc(50% - 9vh);
+  right: 0;
+  padding: 2vh 4vh;
   z-index: 1;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  background: linear-gradient(to right, white, rgba(255, 255, 255, 0), white);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 .jacket__logo {
-  width: 6rem;
+  width: 10vh;
   height: auto;
   fill: var(--color-font);
 }
 .jacket__play {
-  width: 4.4rem;
-  height: 4.4rem;
+  width: 6vh;
+  height: 6vh;
   position: relative;
-  margin: 0 1.4rem 0 0;
+  margin: 0 1.5vh 0 0;
   padding: 0;
   border: 0;
   border-radius: 50%;
@@ -109,17 +115,17 @@ body.is-playing .jacket__play:after {
   width: 0;
   height: 0;
   position: absolute;
-  top: 29%;
-  left: 33%;
+  top: 30.5%;
+  left: 34%;
   border-style: solid;
-  border-width: 0 11px 19px 11px;
+  border-width: 0 1.4vh 2.4vh 1.4vh;
   border-color: transparent transparent var(--color-white) transparent;
   transform: rotate(90deg);
 }
 .jacket__play:after {
   content: "";
-  width: 0.5rem;
-  height: 2.1rem;
+  width: 0.5vh;
+  height: 2.6vh;
   opacity: 0;
   position: absolute;
   top: 0;
@@ -127,8 +133,8 @@ body.is-playing .jacket__play:after {
   bottom: 0;
   left: 0;
   margin: auto;
-  border-left: 0.6rem solid var(--color-white);
-  border-right: 0.6rem solid var(--color-white);
+  border-left: 0.8vh solid var(--color-white);
+  border-right: 0.8vh solid var(--color-white);
   box-sizing: content-box;
 }
 
@@ -163,24 +169,8 @@ body.is-playing .jacket__play:after {
   html {
     font-size: 16px;
   }
-  .jacket__logo {
-    width: 4.2rem;
-  }
-  .jacket__play {
-    width: 3.2rem;
-    height: 3.2rem;
-    margin: 0 1rem 0 0;
-  }
-  .jacket__play:before {
-    top: 31%;
-    left: 34%;
-    border-width: 0 12px 21px 12px;
-  }
-  .jacket__play:after {
-    width: 0.3rem;
-    height: 1.5rem;
-    border-left-width: 0.4rem;
-    border-right-width: 0.4rem;
+  .jacket {
+    top: calc(50% - 11vh);
   }
   .poem__item {
     font-size: calc(100vh / (6 * 2.8));
@@ -210,7 +200,7 @@ body.is-playing .jacket__play:after {
 <body>
   <div class="jacket">
     <button type="button" class="jacket__play" aria-label="音楽を再生する"></button>
-    <svg xmlns="http://www.w3.org/2000/svg" width="75" height="33" viewBox="0 0 75 33">
+    <svg xmlns="http://www.w3.org/2000/svg" width="75" height="33" viewBox="0 0 75 33" class="jacket__logo">
       <path d="M14.3 2.7c0-.7-.1-1.4-.2-2.2h4.5c-.1.7-.2 1.4-.2 2.2V5h9.7c.7 0 1.4 0 2.1-.1v1.7c-.4 0-.5-.1-.7-.1h-7.6l4.4 1.7-.9 1c-1.3 1.7-2.7 3.4-4.2 5l-.2.2h9c.7 0 1.4 0 2.2-.1V16c-.4 0-.5-.1-.7-.1H2.8c-.6 0-1.2 0-1.8.1v-1.6c.7.1 1.4.1 2.2.1h5.9L9 13.3c-.3-1.7-.7-3.4-1.2-5.1l-.4-1 1.1-.6H4.7c-.6 0-1.2 0-1.8.1V4.9c.7.1 1.4.2 2.2.2h9.2V2.7zm13 15.7c-.1 1-.2 1.9-.2 2.9v8.1c0 1 0 2 .2 3h-.9c-.6-.1-1.2-.1-1.8-.1H5.9c.1-1 .2-1.9.2-2.9v-8.1c0-1 0-1.9-.2-2.9 1.1.1 1.9.1 2.7.1h15.9c.6 0 1.1 0 1.6-.1H27.3zM9.4 7.2c1.3 1.3 2.4 2.8 3.4 4.2l.9 1-4 1.9h9.4c.9-2.1 1.7-4.3 2.3-6.5l.2-1.4H8.8l.6.8zm.9 12.8v4.5h12.8V20H10.3zm0 5.9v5h12.8v-5H10.3zM50.4 11.9l-.8.7c-1.5 1.9-3.2 3.5-5.1 5l-.8.7-2.5-3.6 1.1-.3c2.2-.8 4.4-1.9 6.4-3.1l.7-.6 1 1.2zm11.5-7.4c.9 0 1.8 0 2.7-.1-.1 1-.2 1.9-.2 2.9v7.2c0 1 0 1.9.2 2.9-.7-.1-1.4-.1-2.1-.1h-2.9v3.3h11.6c.7 0 1.4 0 2.2-.1v1.7c-.7-.1-1.4-.2-2.2-.2H60.6c3.3 2.8 7.1 4.7 11.3 5.8l1.7.3-2.8 4.2-1.3-.8c-4-2-7.4-4.9-10.1-8.4v7.7c0 .7.1 1.4.2 2.2h-4.5v-.4c.1-.6.1-1.2.1-1.8v-6c-3.5 3.4-7.7 5.9-12.4 7.4l-1.2.5-.6-1.2 1.3-.5c4-2.2 7.5-5.2 10.1-9h-8.8c-.8 0-.8 0-1.9.2v-1.7c.7.1 1.4.1 2.2.1h11.3v-3.2H53c-.9 0-1.3 0-2.2.1.1-1 .2-1.9.2-2.9V7.3c0-1 0-1.9-.2-2.9.9.1 1.8.1 2.7.1H55c.4-1.1.6-2.2.8-3.3L56 .1l5 .9-1 .8c-.8.8-1.9 1.9-2.8 2.7h4.7zm-18-.9c1.7.8 3.4 1.7 5.1 2.6l.9.4-3.3 3.6-.5-1c-1-1.6-2.1-3.1-3.3-4.5L42 4l1-1 .9.6zm10.7 2.3V10h6.1V5.9h-6.1zm0 5.6v4.4h6.1v-4.4h-6.1zM73.9 6l-1 .5c-1.9 1.1-3.9 2.1-6 2.8l-.9.4-.9-1.2.8-.5c1.4-1.3 2.7-2.7 3.8-4.3l.5-.9L73.9 6zm-7.1 5.3c2 .8 4 1.8 5.9 2.8l1.1.4-3 3.7-.6-.9a48.1 48.1 0 00-4.2-4.8l-.8-.5.8-1.1.8.4z"/>
     </svg>
   </div>
@@ -300,7 +290,7 @@ body.is-playing .jacket__play:after {
     var translateY = 0
 
     function render() {
-      jacket.style.transform = 'translate(' + translateX + 'px, ' + translateY + 'px)'
+      jacket.style.transform = 'translate(' + 0 + 'px, ' + translateY + 'px)'
 
       if (isGrabbing) {
         requestAnimationFrame(render)

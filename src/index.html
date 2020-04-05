@@ -81,27 +81,25 @@ body.is-playing .jacket__play:after {
 .jacket {
   width: 100%;
   position: absolute;
-  top: calc(50% - 9vh);
+  top: calc(50% - 12.4vh);
   right: 0;
-  padding: 2vh 4vh;
+  padding: 3vh;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: linear-gradient(to right, white, rgba(255, 255, 255, 0), white);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white 20%, white 80%, rgba(255, 255, 255, 0));
 }
 .jacket__logo {
-  width: 10vh;
+  width: 13vh;
   height: auto;
   fill: var(--color-font);
 }
 .jacket__play {
-  width: 6vh;
-  height: 6vh;
+  width: 7.4vh;
+  height: 7.4vh;
   position: relative;
-  margin: 0 1.5vh 0 0;
+  margin: 0 2vh 0 0;
   padding: 0;
   border: 0;
   border-radius: 50%;
@@ -115,17 +113,17 @@ body.is-playing .jacket__play:after {
   width: 0;
   height: 0;
   position: absolute;
-  top: 30.5%;
-  left: 34%;
+  top: 30%;
+  left: 35%;
   border-style: solid;
-  border-width: 0 1.4vh 2.4vh 1.4vh;
+  border-width: 0 1.8vh 3.2vh 1.8vh;
   border-color: transparent transparent var(--color-white) transparent;
   transform: rotate(90deg);
 }
 .jacket__play:after {
   content: "";
-  width: 0.5vh;
-  height: 2.6vh;
+  width: 0.7vh;
+  height: 3.2vh;
   opacity: 0;
   position: absolute;
   top: 0;
@@ -133,8 +131,8 @@ body.is-playing .jacket__play:after {
   bottom: 0;
   left: 0;
   margin: auto;
-  border-left: 0.8vh solid var(--color-white);
-  border-right: 0.8vh solid var(--color-white);
+  border-left: 1vh solid var(--color-white);
+  border-right: 1vh solid var(--color-white);
   box-sizing: content-box;
 }
 
@@ -154,9 +152,9 @@ body.is-playing .jacket__play:after {
 }
 .poem__item {
   padding: 0 0.2em;
-  font-size: calc(100vh / (6 * 3.8));
+  font-size: calc(100vh / (6 * 3.4));
   letter-spacing: 0.18em;
-  line-height: 2;
+  line-height: 2.1;
 }
 .poem__link,
 .poem__link:hover,
@@ -170,11 +168,12 @@ body.is-playing .jacket__play:after {
     font-size: 16px;
   }
   .jacket {
-    top: calc(50% - 11vh);
+    top: calc(50% - 14.8vh);
+    padding: 3vh 7vh;
   }
   .poem__item {
-    font-size: calc(100vh / (6 * 2.8));
-    line-height: 2;
+    font-size: calc(100vh / (6 * 2.4));
+    line-height: 2.2;
     letter-spacing: 0.25em;
   }
 }

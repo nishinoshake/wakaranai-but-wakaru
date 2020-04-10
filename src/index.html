@@ -74,17 +74,19 @@ body.is-playing .jacket__play:after {
 }
 
 .jacket {
-  width: 50vh;
-  height: 50vh;
+  width: 38vh;
+  height: 38vh;
   position: absolute;
-  top: calc(50% - 50vh / 2);
-  left: calc(50% - 50vh / 2);
+  top: calc(50% - 38vh / 2);
+  left: calc(50% - 38vh / 2);
   right: 0;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+  will-change: transform
 }
 .jacket__logo {
   width: 30vh;
@@ -120,8 +122,8 @@ body.is-playing .jacket__play:after {
 }
 .jacket__play:after {
   content: "";
-  width: 1.6vh;
-  height: 7vh;
+  width: 1.4vh;
+  height: 6vh;
   opacity: 0;
   position: absolute;
   top: 0;
@@ -129,8 +131,8 @@ body.is-playing .jacket__play:after {
   bottom: 0;
   left: 0;
   margin: auto;
-  border-left: 2.2vh solid var(--color-white);
-  border-right: 2.2vh solid var(--color-white);
+  border-left: 2vh solid var(--color-white);
+  border-right: 2vh solid var(--color-white);
   box-sizing: content-box;
 }
 
@@ -164,6 +166,13 @@ body.is-playing .jacket__play:after {
   html {
     font-size: 16px;
   }
+  .jacket {
+    width: 44vh;
+    height: 44vh;
+    top: calc(50% - 44vh / 2);
+    left: calc(50% - 44vh / 2);
+    transition: transform 0.36s cubic-bezier(0.33, 1, 0.68, 1);
+  }
   .jacket__logo {
     width: 40vh;
   }
@@ -176,6 +185,12 @@ body.is-playing .jacket__play:after {
     top: 30%;
     left: 34%;
     border-width: 0 4vh 7vh 4vh;
+  }
+  .jacket__play:after {
+    width: 1.6vh;
+    height: 7vh;
+    border-left: 2.2vh solid var(--color-white);
+    border-right: 2.2vh solid var(--color-white);
   }
   .poem__item {
     font-size: calc(100vh / (6 * 2.5));
@@ -278,6 +293,66 @@ body.is-playing .jacket__play:after {
     var jacket = document.querySelector('.jacket')
     var visibleClass = 'is-visible'
     var playingClass = 'is-playing'
+    var grabClass = 'is-grab'
+    var grabbingClass = 'is-grabbing'
+    var isGrabbing = false
+    var prevX = 0
+    var prevY = 0
+    var translateX = 0
+    var translateY = 0
+
+    function render() {
+      jacket.style.transform = 'translate(' + translateX + 'px, ' + translateY + 'px)'
+
+      if (isGrabbing) {
+        requestAnimationFrame(render)
+      }
+    }
+
+    function mouseMoveHandler(e) {
+      handleMove(e.clientX, e.clientY)
+    }
+
+    function mouseUpHandler(e) {
+      handleEnd(e.clientX, e.clientY)
+      body.removeEventListener('mousemove', mouseMoveHandler)
+      body.removeEventListener('mouseup', mouseUpHandler)
+    }
+
+    function touchMoveHandler(e) {
+      handleMove(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+    }
+
+    function touchEndHandler(e) {
+      handleEnd(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+      body.removeEventListener('touchmove', touchMoveHandler)
+      body.removeEventListener('touchend', touchEndHandler)
+    }
+
+    function handleStart(x, y) {
+      isGrabbing = true
+      prevX = x
+      prevY = y
+      body.classList.add(grabbingClass)
+
+      render()
+    }
+
+    function handleMove(x, y) {
+      if (!isGrabbing) {
+        return
+      }
+
+      translateX += x - prevX
+      translateY += y - prevY
+      prevX = x
+      prevY = y
+    }
+
+    function handleEnd(x, y) {
+      isGrabbing = false
+      body.classList.remove(grabbingClass)
+    }
 
     function clonePoem() {
       document.querySelectorAll('.poem__list').forEach(function(list) {
@@ -295,6 +370,34 @@ body.is-playing .jacket__play:after {
         audio.play()
         body.classList.add(playingClass)
       }
+    })
+
+    playButton.addEventListener('mousedown', function(e) {
+      e.stopPropagation()
+    })
+
+    jacket.addEventListener('mouseenter', function(e) {
+      body.classList.add(grabClass)
+    })
+
+    jacket.addEventListener('mouseleave', function(e) {
+      body.classList.remove(grabClass)
+    })
+
+    jacket.addEventListener('mousedown', function(e) {
+      handleStart(e.clientX, e.clientY)
+      body.addEventListener('mousemove', mouseMoveHandler)
+      body.addEventListener('mouseup', mouseUpHandler)
+    })
+
+    jacket.addEventListener('touchstart', function(e) {
+      handleStart(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+      body.addEventListener('touchmove', touchMoveHandler)
+      body.addEventListener('touchend', touchEndHandler)
+    })
+
+    jacket.addEventListener('contextmenu', function(e) {
+      e.preventDefault()
     })
 
     clonePoem()

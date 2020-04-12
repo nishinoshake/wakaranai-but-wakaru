@@ -82,28 +82,28 @@ body.is-playing .jacket__play:after {
   right: 0;
   z-index: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   transition: transform 0.2s cubic-bezier(0.33, 1, 0.68, 1);
   will-change: transform
 }
 .jacket__logo {
-  width: 30vh;
+  width: 22vh;
   height: auto;
-  fill: var(--color-font);
+  flex: none;
+  fill: rgba(0, 0, 0, 0.8);
   pointer-events: none;
 }
 .jacket__play {
-  width: 15vh;
-  height: 15vh;
-  margin: 4vh 0 0;
+  width: 9.2vh;
+  height: 9.2vh;
+  flex: none;
+  margin: 0 0 0 3.4vh;
   padding: 0;
   border: 0;
   position: relative;
   z-index: 1;
-  border-radius: 50%;
-  background: var(--color-font);
+  background: rgba(0, 0, 0, 0.8);
   outline: none;
   -webkit-appearance: none;
   cursor: pointer;
@@ -113,17 +113,17 @@ body.is-playing .jacket__play:after {
   width: 0;
   height: 0;
   position: absolute;
-  top: 30%;
-  left: 34%;
+  top: 28%;
+  left: 28%;
   border-style: solid;
-  border-width: 0 3.6vh 6.3vh 3.6vh;
+  border-width: 0 2.5vh 4.3vh 2.5vh;
   border-color: transparent transparent var(--color-white) transparent;
   transform: rotate(90deg);
 }
 .jacket__play:after {
   content: "";
-  width: 1.4vh;
-  height: 6vh;
+  width: 0.8vh;
+  height: 4.2vh;
   opacity: 0;
   position: absolute;
   top: 0;
@@ -131,8 +131,8 @@ body.is-playing .jacket__play:after {
   bottom: 0;
   left: 0;
   margin: auto;
-  border-left: 2vh solid var(--color-white);
-  border-right: 2vh solid var(--color-white);
+  border-left: 1.4vh solid var(--color-white);
+  border-right: 1.4vh solid var(--color-white);
   box-sizing: content-box;
 }
 
@@ -153,7 +153,7 @@ body.is-playing .jacket__play:after {
   padding: 0 0.2em;
   font-size: calc(100vh / (6 * 3.1));
   letter-spacing: 0.18em;
-  line-height: 2.4;
+  line-height: 2.3;
 }
 .poem__link,
 .poem__link:hover,
@@ -167,19 +167,18 @@ body.is-playing .jacket__play:after {
     font-size: 16px;
   }
   .jacket {
-    width: 44vh;
-    height: 44vh;
-    top: calc(50% - 44vh / 2);
-    left: calc(50% - 44vh / 2);
-    transition: transform 0.36s cubic-bezier(0.33, 1, 0.68, 1);
+    width: 66vh;
+    height: 21vh;
+    top: calc(50% - 21vh / 2);
+    left: calc(50% - 54vh / 2);
   }
   .jacket__logo {
     width: 40vh;
   }
   .jacket__play {
-    width: 18vh;
-    height: 18vh;
-    margin: 4.6vh 0 0;
+    width: 17vh;
+    height: 17vh;
+    margin: 0 0 0 4.2vh;
   }
   .jacket__play:before {
     top: 30%;

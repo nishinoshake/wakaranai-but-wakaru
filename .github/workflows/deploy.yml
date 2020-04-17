@@ -40,6 +40,9 @@ jobs:
     - name: create font subset
       run: npm run font:build
 
+    - name: minify html
+      run: npm run html:minify
+
     - name: deploy to AWS
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

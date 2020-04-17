@@ -7,10 +7,12 @@
     "font:subset": "node scripts/create-subset.js",
     "font:woff": "pyftsubset ./src/fonts/noto-serif.otf  --layout-features='' --flavor=woff --text-file=./scripts/subset.txt --output-file=./src/fonts/noto-serif-sub.woff",
     "font:woff2": "pyftsubset ./src/fonts/noto-serif.otf  --layout-features='' --flavor=woff2 --text-file=./scripts/subset.txt --output-file=./src/fonts/noto-serif-sub.woff2",
-    "font:build": "npm run font:subset && npm run font:woff && npm run font:woff2"
+    "font:build": "npm run font:subset && npm run font:woff && npm run font:woff2",
+    "html:minify": "html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --minify-css true --minify-js true -o ./src/index.html ./src/index.html"
   },
   "devDependencies": {
     "browser-sync": "^2.26.7",
+    "html-minifier": "^4.0.0",
     "jsdom": "^16.2.1"
   }
 }

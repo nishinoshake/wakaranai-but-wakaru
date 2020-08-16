@@ -81,12 +81,11 @@ body.is-playing .jacket__play:after {
 }
 
 .jacket {
-  width: 38vh;
-  height: 38vh;
+  width: 20vh;
+  height: 10vh;
   position: absolute;
-  top: calc(50% - 38vh / 2);
-  left: calc(50% - 38vh / 2);
-  right: 0;
+  right: 2vh;
+  bottom: 2vh;
   z-index: 1;
   display: flex;
   justify-content: center;
@@ -95,17 +94,17 @@ body.is-playing .jacket__play:after {
   will-change: transform
 }
 .jacket__logo {
-  width: 22vh;
+  width: 10vh;
   height: auto;
   flex: none;
   fill: rgba(0, 0, 0, 0.8);
   pointer-events: none;
 }
 .jacket__play {
-  width: 9.2vh;
-  height: 9.2vh;
+  width: 5vh;
+  height: 5vh;
   flex: none;
-  margin: 0 0 0 3.4vh;
+  margin: 0 0 0 1.5vh;
   padding: 0;
   border: 0;
   position: relative;
@@ -123,14 +122,14 @@ body.is-playing .jacket__play:after {
   top: 28%;
   left: 28%;
   border-style: solid;
-  border-width: 0 2.5vh 4.3vh 2.5vh;
+  border-width: 0 1.3vh 2.275vh 1.3vh;
   border-color: transparent transparent var(--color-white) transparent;
   transform: rotate(90deg);
 }
 .jacket__play:after {
   content: "";
-  width: 0.8vh;
-  height: 4.2vh;
+  width: 0.7vh;
+  height: 2.4vh;
   opacity: 0;
   position: absolute;
   top: 0;
@@ -138,8 +137,8 @@ body.is-playing .jacket__play:after {
   bottom: 0;
   left: 0;
   margin: auto;
-  border-left: 1.4vh solid var(--color-white);
-  border-right: 1.4vh solid var(--color-white);
+  border-left: 0.7vh solid var(--color-white);
+  border-right: 0.7vh solid var(--color-white);
   box-sizing: content-box;
 }
 
@@ -153,14 +152,14 @@ body.is-playing .jacket__play:after {
   display: inline-flex;
   white-space: nowrap;
   list-style-type: none;
-  animation: kimura-kaela 59s 0s linear infinite;
+  animation: kimura-kaela 46s 0s linear infinite;
   will-change: transform;
 }
 .poem__item {
   padding: 0 0.2em;
-  font-size: calc(100vh / (6 * 3.1));
+  font-size: calc(100vh / (14 * 2.1));
   letter-spacing: 0.18em;
-  line-height: 2.3;
+  line-height: 2.1;
 }
 .poem__link,
 .poem__link:hover,
@@ -174,32 +173,32 @@ body.is-playing .jacket__play:after {
     font-size: 16px;
   }
   .jacket {
-    width: 66vh;
-    height: 21vh;
-    top: calc(50% - 21vh / 2);
-    left: calc(50% - 54vh / 2);
+    width: 20vh;
+    height: 8vh;
+    bottom: 3vh;
+    right: 3vh;
   }
   .jacket__logo {
-    width: 40vh;
+    width: 10vh;
   }
   .jacket__play {
-    width: 17vh;
-    height: 17vh;
-    margin: 0 0 0 4.2vh;
+    width: 5vh;
+    height: 5vh;
+    margin: 0 0 0 2vh;
   }
   .jacket__play:before {
     top: 30%;
     left: 31%;
-    border-width: 0 4vh 7vh 4vh;
+    border-width: 0 1.2vh 2.1vh 1.2vh;
   }
   .jacket__play:after {
-    width: 1.6vh;
-    height: 7vh;
-    border-left: 2.2vh solid var(--color-white);
-    border-right: 2.2vh solid var(--color-white);
+    width: 0.6vh;
+    height: 2.4vh;
+    border-left: 0.8vh solid var(--color-white);
+    border-right: 0.8vh solid var(--color-white);
   }
   .poem__item {
-    font-size: calc(100vh / (6 * 2.5));
+    font-size: calc(100vh / (12 * 2.2));
     line-height: 2.2;
     letter-spacing: 0.25em;
   }
@@ -296,69 +295,8 @@ body.is-playing .jacket__play:after {
     var body = document.body
     var audio = document.querySelector('audio')
     var playButton = document.querySelector('.jacket__play')
-    var jacket = document.querySelector('.jacket')
     var visibleClass = 'is-visible'
     var playingClass = 'is-playing'
-    var grabClass = 'is-grab'
-    var grabbingClass = 'is-grabbing'
-    var isGrabbing = false
-    var prevX = 0
-    var prevY = 0
-    var translateX = 0
-    var translateY = 0
-
-    function render() {
-      jacket.style.transform = 'translate(' + translateX + 'px, ' + translateY + 'px)'
-
-      if (isGrabbing) {
-        requestAnimationFrame(render)
-      }
-    }
-
-    function mouseMoveHandler(e) {
-      handleMove(e.clientX, e.clientY)
-    }
-
-    function mouseUpHandler(e) {
-      handleEnd(e.clientX, e.clientY)
-      body.removeEventListener('mousemove', mouseMoveHandler)
-      body.removeEventListener('mouseup', mouseUpHandler)
-    }
-
-    function touchMoveHandler(e) {
-      handleMove(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
-    }
-
-    function touchEndHandler(e) {
-      handleEnd(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
-      body.removeEventListener('touchmove', touchMoveHandler)
-      body.removeEventListener('touchend', touchEndHandler)
-    }
-
-    function handleStart(x, y) {
-      isGrabbing = true
-      prevX = x
-      prevY = y
-      body.classList.add(grabbingClass)
-
-      render()
-    }
-
-    function handleMove(x, y) {
-      if (!isGrabbing) {
-        return
-      }
-
-      translateX += x - prevX
-      translateY += y - prevY
-      prevX = x
-      prevY = y
-    }
-
-    function handleEnd(x, y) {
-      isGrabbing = false
-      body.classList.remove(grabbingClass)
-    }
 
     function clonePoem() {
       document.querySelectorAll('.poem__list').forEach(function(list) {
@@ -376,34 +314,6 @@ body.is-playing .jacket__play:after {
         audio.play()
         body.classList.add(playingClass)
       }
-    })
-
-    playButton.addEventListener('mousedown', function(e) {
-      e.stopPropagation()
-    })
-
-    jacket.addEventListener('mouseenter', function(e) {
-      body.classList.add(grabClass)
-    })
-
-    jacket.addEventListener('mouseleave', function(e) {
-      body.classList.remove(grabClass)
-    })
-
-    jacket.addEventListener('mousedown', function(e) {
-      handleStart(e.clientX, e.clientY)
-      body.addEventListener('mousemove', mouseMoveHandler)
-      body.addEventListener('mouseup', mouseUpHandler)
-    })
-
-    jacket.addEventListener('touchstart', function(e) {
-      handleStart(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
-      body.addEventListener('touchmove', touchMoveHandler)
-      body.addEventListener('touchend', touchEndHandler)
-    })
-
-    jacket.addEventListener('contextmenu', function(e) {
-      e.preventDefault()
     })
 
     clonePoem()
